@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activities.LoginOrSignUpActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="33dp"
+        android:layout_marginEnd="33dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.69">
+
+        <!--        <android.widget.Button-->
+        <!--            android:id="@+id/button2"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="57dp"-->
+        <!--            android:layout_marginBottom="10dp"-->
+        <!--            android:background="@drawable/oval_bg"-->
+        <!--            android:onClick="openDict"-->
+        <!--            android:paddingStart="20dp"-->
+        <!--            android:paddingEnd="20dp"-->
+        <!--            android:text="Dictionary"-->
+        <!--            android:textColor="@color/white"-->
+        <!--            android:textSize="17sp" />-->
+
+        <!--        <android.widget.Button-->
+        <!--            android:id="@+id/button"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="55dp"-->
+        <!--            android:layout_marginBottom="25dp"-->
+        <!--            android:background="@drawable/oval_bg"-->
+        <!--            android:onClick="openGames"-->
+        <!--            android:paddingStart="13dp"-->
+        <!--            android:paddingEnd="13dp"-->
+        <!--            android:text="Games"-->
+        <!--            android:textColor="@color/white"-->
+        <!--            android:textSize="17sp" />-->
+
+        <!--        <ImageView-->
+        <!--            android:id="@+id/imageView2"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="10dp"-->
+        <!--            android:layout_marginBottom="20dp"-->
+        <!--            android:scaleX="100"-->
+        <!--            android:scaleY="1.3"-->
+        <!--            app:srcCompat="@drawable/straight_gray_line" />-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/editTextTextPersonName100"
+                style="@style/MyStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="7dp"
+                android:fontFamily="@font/andika_new_basic_bold"
+                android:hint="Username"
+                android:inputType="textPersonName"
+                android:visibility="gone" />
+
+            <EditText
+                android:id="@+id/editTextTextPersonName99"
+                style="@style/MyStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="7dp"
+                android:fontFamily="@font/andika_new_basic_bold"
+                android:hint="Username or Email"
+                android:inputType="textPersonName" />
+
+
+            <EditText
+                android:id="@+id/editTextTextPersonName98"
+                style="@style/MyStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/andika_new_basic_bold"
+                android:hint="Password"
+                android:inputType="textPersonName" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/button99"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:textColor="@color/white"
+                android:background="@drawable/solid_black_black_border"
+                android:fontFamily="@font/andika_new_basic_bold"
+                android:text="Log in"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:fontFamily="@font/andika_new_basic_bold"
+                android:gravity="center"
+                android:text="----- Or -----"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/button100"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/empty_rounded_black_border"
+                android:fontFamily="@font/andika_new_basic_bold"
+                android:text="Create new account"
+                android:textStyle="bold"
+                android:textColor="@color/ddddark_gray"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0" />
+
+        </LinearLayout>
+
+        <!--        <TextView-->
+        <!--            android:id="@+id/textView37"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginTop="35dp"-->
+        <!--            android:layout_marginBottom="10dp"-->
+        <!--            android:gravity="center"-->
+        <!--            android:text="Or"-->
+        <!--            android:textStyle="bold"-->
+        <!--            android:textSize="25sp" />-->
+
+
+        <!--        <LinearLayout-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="match_parent"-->
+        <!--            android:layout_marginStart="30dp"-->
+        <!--            android:layout_marginTop="15dp"-->
+        <!--            android:layout_marginEnd="30dp"-->
+        <!--            android:orientation="horizontal">-->
+
+        <!--            <ImageButton-->
+        <!--                android:id="@+id/imageButton4"-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:layout_marginStart="9dp"-->
+        <!--                android:layout_weight="1"-->
+        <!--                android:background="@color/white"-->
+        <!--                android:paddingTop="4dp"-->
+        <!--                android:paddingBottom="4dp"-->
+        <!--                android:scaleX="0.7"-->
+        <!--                android:scaleY="0.7"-->
+        <!--                app:srcCompat="@drawable/google_icon" />-->
+
+        <!--            <ImageButton-->
+        <!--                android:id="@+id/imageButton5"-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:layout_marginStart="6dp"-->
+        <!--                android:layout_weight="1"-->
+        <!--                android:background="@color/white"-->
+        <!--                android:paddingTop="4dp"-->
+        <!--                android:paddingBottom="4dp"-->
+        <!--                android:scaleX="0.7"-->
+        <!--                android:scaleY="0.7"-->
+        <!--                app:srcCompat="@drawable/facebook_icon" />-->
+
+        <!--            <ImageButton-->
+        <!--                android:id="@+id/imageButton5"-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:layout_marginStart="6dp"-->
+        <!--                android:layout_weight="1"-->
+        <!--                android:background="@color/white"-->
+        <!--                android:paddingTop="4dp"-->
+        <!--                android:paddingBottom="4dp"-->
+        <!--                android:scaleX="0.7"-->
+        <!--                android:scaleY="0.7"-->
+        <!--                app:srcCompat="@drawable/twitter_icon" />-->
+
+        <!--        </LinearLayout>-->
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.18">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            android:src="@drawable/google_icon" />
+
+        <TextView
+            android:id="@+id/spc1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/andika_new_basic_bold"
+            android:text="Sign in"
+            android:textColor="@color/ddddark_gray"
+            android:textSize="40sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/spc2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/dark_gray"
+            android:fontFamily="@font/andika_new_basic_bold"
+            android:text="If you already have an account"
+            android:textSize="18sp" />
+
+
+    </LinearLayout>
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

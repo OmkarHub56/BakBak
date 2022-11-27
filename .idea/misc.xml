@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/AndroidDevProject/BakBak/app/src/main/res/drawable/curve_dip.xml" value="0.155" />
+        <entry key="..\:/AndroidDevProject/BakBak/app/src/main/res/drawable/empty_rounded_black_border.xml" value="0.155" />
+        <entry key="..\:/AndroidDevProject/BakBak/app/src/main/res/drawable/one_contact_bg.xml" value="0.155" />
+        <entry key="..\:/AndroidDevProject/BakBak/app/src/main/res/drawable/profile_bgs.xml" value="0.222" />
+        <entry key="..\:/AndroidDevProject/BakBak/app/src/main/res/drawable/receiver_bg.xml" value="0.155" />
+        <entry key="..\:/AndroidDevProject/BakBak/app/src/main/res/drawable/rounded_corner_lllight_gray.xml" value="0.155" />
+        <entry key="..\:/AndroidDevProject/BakBak/app/src/main/res/drawable/search_icon.xml" value="0.155" />
+        <entry key="..\:/AndroidDevProject/BakBak/app/src/main/res/drawable/sender_bg.xml" value="0.155" />
+        <entry key="..\:/AndroidDevProject/BakBak/app/src/main/res/drawable/settings_icon.xml" value="0.155" />
+        <entry key="..\:/AndroidDevProject/BakBak/app/src/main/res/drawable/solid_black_black_border.xml" value="0.155" />
+        <entry key="..\:/AndroidDevProject/BakBak/app/src/main/res/drawable/tab_bg.xml" value="0.222" />
+        <entry key="..\:/AndroidDevProject/BakBak/app/src/main/res/drawable/up_curve_dip.xml" value="0.155" />
+        <entry key="..\:/AndroidDevProject/BakBak/app/src/main/res/font/alatsi.xml" value="0.2625" />
+        <entry key="..\:/AndroidDevProject/BakBak/app/src/main/res/font/andika_new_basic_bold.xml" value="0.2625" />
+        <entry key="..\:/AndroidDevProject/BakBak/app/src/main/res/layout/activity_chat.xml" value="0.4" />
+        <entry key="..\:/AndroidDevProject/BakBak/app/src/main/res/layout/activity_friends_list.xml" value="0.264" />
+        <entry key="..\:/AndroidDevProject/BakBak/app/src/main/res/layout/activity_loginorsignup.xml" value="0.264" />
+        <entry key="..\:/AndroidDevProject/BakBak/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/AndroidDevProject/BakBak/app/src/main/res/layout/activity_profile.xml" value="0.4" />
+        <entry key="..\:/AndroidDevProject/BakBak/app/src/main/res/layout/activity_settings.xml" value="0.23229166666666667" />
+        <entry key="..\:/AndroidDevProject/BakBak/app/src/main/res/layout/fragment_chats.xml" value="0.19067977768277042" />
+        <entry key="..\:/AndroidDevProject/BakBak/app/src/main/res/layout/fragment_received.xml" value="0.19067977768277042" />
+        <entry key="..\:/AndroidDevProject/BakBak/app/src/main/res/layout/fragment_sent.xml" value="0.19067977768277042" />
+        <entry key="..\:/AndroidDevProject/BakBak/app/src/main/res/layout/one_contact.xml" value="0.23125" />
+        <entry key="..\:/AndroidDevProject/BakBak/app/src/main/res/layout/one_user_layout.xml" value="0.2" />
+        <entry key="..\:/AndroidDevProject/BakBak/app/src/main/res/layout/sample_receiver.xml" value="0.536" />
+        <entry key="..\:/AndroidDevProject/BakBak/app/src/main/res/layout/sample_sender.xml" value="0.8" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
