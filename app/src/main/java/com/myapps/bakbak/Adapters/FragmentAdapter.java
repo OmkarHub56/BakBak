@@ -14,6 +14,7 @@ import com.myapps.bakbak.Fragments.SentFragment;
 
 public class FragmentAdapter extends FragmentStateAdapter {
 
+    SentFragment frg;
     Context context;
     public FragmentAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle,Context context) {
         super(fragmentManager, lifecycle);
@@ -27,7 +28,8 @@ public class FragmentAdapter extends FragmentStateAdapter {
             return new ChatsFragment();
         }
         else if(position==1){
-            return new SentFragment();
+            frg=new SentFragment();
+            return frg;
         }
         else if(position==2){
             return new ReceivedFragment();
@@ -38,5 +40,9 @@ public class FragmentAdapter extends FragmentStateAdapter {
     @Override
     public int getItemCount() {
         return 3;
+    }
+
+    public SentFragment getSentFragment(){
+        return frg;
     }
 }

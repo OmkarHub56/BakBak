@@ -9,6 +9,9 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="red">#EA0909</color>
+    <color name="delete_chat_red">#D11A2A</color>
+    <color name="alert_red">#D54A56</color>
+    <color name="pink">#BF69E4</color>
     <color name="close_to_black_gray">#303030</color>
     <color name="my_gray">#505050</color>
     <color name="ddddark_gray">#757575</color>
@@ -23,4 +26,6 @@
     <color name="llight_yellow">#F3F0B7</color>
     <color name="lllight_yellow">#F4F2C5</color>
     <color name="green">#03F809</color>
+    <color name="my_green">#6CD6A4</color>
+    <color name="blue">#3EA4F5</color>
 </resources>

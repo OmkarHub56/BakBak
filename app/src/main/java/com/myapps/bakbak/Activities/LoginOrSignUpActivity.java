@@ -1,124 +1,241 @@
 package com.myapps.bakbak.Activities;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
+import android.text.method.PasswordTransformationMethod;
+import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.messaging.FirebaseMessaging;
+import com.myapps.bakbak.ConstantsClass;
 import com.myapps.bakbak.Models.MyUsers;
 import com.myapps.bakbak.R;
 
 public class LoginOrSignUpActivity extends AppCompatActivity implements View.OnClickListener {
 
-    Button createNewAccountButton,loginButton;
-    EditText enterRegisterUsername,enterRegisterEmail,enterRegisterPassword;
+    FirebaseAuth auth;
+    FirebaseDatabase database;
 
-    TextView t1,t2;
+    TextView title_shower,sub_title_shower;
+
+    Button switchSignInSignUpButton,loginOrRegisterButton;
+    EditText enterUsername,enterEmail;
+    EditText enterPassword,enterConfirmPassword;
+    ImageView showPassword,showConfirmPassword;
+
+    // made just to hide it
+    LinearLayout confirmPassHolder;
+
+    ImageView firstPage,secondPage;
 
     // register or sign in
     String curr_status="SIGN";
 
-    FirebaseAuth auth;
-    FirebaseDatabase database;
+    //0 - not visible
+    //1 - visible
+    int showPassStatus=1;
+    int showConfirmPassStatus=1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loginorsignup);
-//        getSupportActionBar().hide();
-
-        createNewAccountButton=findViewById(R.id.button100);
-        createNewAccountButton.setOnClickListener(this);
-
-        loginButton=findViewById(R.id.button99);
-        loginButton.setOnClickListener(this);
-
-        enterRegisterUsername=findViewById(R.id.editTextTextPersonName100);
-        enterRegisterEmail=findViewById(R.id.editTextTextPersonName99);
-        enterRegisterPassword=findViewById(R.id.editTextTextPersonName98);
-
-        t1=findViewById(R.id.spc1);
-        t2=findViewById(R.id.spc2);
 
         auth=FirebaseAuth.getInstance();
         database=FirebaseDatabase.getInstance();
-//        database.setPersistenceEnabled(true);
+
+        title_shower=findViewById(R.id.spc1);
+        sub_title_shower=findViewById(R.id.spc2);
+
+        switchSignInSignUpButton=findViewById(R.id.button100);
+        switchSignInSignUpButton.setOnClickListener(this);
+
+        loginOrRegisterButton=findViewById(R.id.button99);
+        loginOrRegisterButton.setOnClickListener(this);
+
+        enterUsername=findViewById(R.id.editTextTextPersonName100);
+        enterEmail=findViewById(R.id.editTextTextPersonName99);
+
+        enterPassword=findViewById(R.id.editTextTextPersonName98);
+        showPassword=findViewById(R.id.show_pass_eye);
+        showPassword.setOnClickListener(view -> {
+            if(showPassStatus==1){
+                showPassword.setImageResource(R.drawable.hide_password_icon);
+                showPassStatus=0;
+                enterPassword.setTransformationMethod(new PasswordTransformationMethod());
+            }
+            else{
+                showPassword.setImageResource(R.drawable.show_password_icon);
+                showPassStatus=1;
+                enterPassword.setTransformationMethod(null);
+            }
+        });
+        enterConfirmPassword=findViewById(R.id.editTextTextPersonName97);
+        showConfirmPassword=findViewById(R.id.show_confirm_pass_eye);
+        showConfirmPassword.setOnClickListener(view -> {
+            if(showConfirmPassStatus==1){
+                showConfirmPassword.setImageResource(R.drawable.hide_password_icon);
+                showConfirmPassStatus=0;
+                enterConfirmPassword.setTransformationMethod(new PasswordTransformationMethod());
+            }
+            else{
+                showConfirmPassword.setImageResource(R.drawable.show_password_icon);
+                showConfirmPassStatus=1;
+                enterConfirmPassword.setTransformationMethod(null);
+            }
+        });
+        confirmPassHolder=findViewById(R.id.confirm_pass_holder);
+
+        firstPage=findViewById(R.id.first_page);
+        secondPage=findViewById(R.id.second_page);
 
         if(auth.getCurrentUser()!=null){
             Intent intent=new Intent(LoginOrSignUpActivity.this,FriendsListActivity.class);
             startActivity(intent);
+
+            // if user is already logged in no need to return to this activity unless user logs out again
+            finish();
         }
     }
 
     @Override
     public void onClick(View view) {
-        if(view==loginButton){
-            String email=enterRegisterEmail.getText().toString();
-            String password=enterRegisterPassword.getText().toString();
+
+
+        if(view==loginOrRegisterButton){
+            String username=enterUsername.getText().toString();
+            String email=enterEmail.getText().toString();
+            String password=enterPassword.getText().toString();
+            String confirmPassword=enterConfirmPassword.getText().toString();
             if(curr_status.equals("CREATE")){
-                auth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful()){
-                            String username=enterRegisterUsername.getText().toString();
-                            database.getReference().child("Users").child(auth.getCurrentUser().getUid()).setValue(new MyUsers(username,email,password));
-                            Toast.makeText(LoginOrSignUpActivity.this, "Account created successfully", Toast.LENGTH_SHORT).show();
-                        }
-                        else{
-                            Toast.makeText(LoginOrSignUpActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
+                createNewAccount(username,email,password,confirmPassword);
             }
             else{
-                auth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful()){
-                            Intent intent=new Intent(LoginOrSignUpActivity.this,FriendsListActivity.class);
-                            startActivity(intent);
-                        }
-                        else{
-                            Toast.makeText(LoginOrSignUpActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
+                signInWithAccount(email.trim(),password,username);
             }
         }
-        else if(view==createNewAccountButton){
+        else if(view==switchSignInSignUpButton){
             if(curr_status.equals("SIGN")){
-                enterRegisterUsername.setVisibility(View.VISIBLE);
-                enterRegisterEmail.setHint("Email");
-                loginButton.setText("REGISTER");
-                createNewAccountButton.setText("SIGN IN");
 
-                t1.setText("Register");
-                t2.setText("If you are new here");
+                title_shower.setText("Register");
+                sub_title_shower.setText("In you are new here");
+
+                enterUsername.setVisibility(View.VISIBLE);
+                confirmPassHolder.setVisibility(View.VISIBLE);
+                loginOrRegisterButton.setText("REGISTER");
+                switchSignInSignUpButton.setText("<-  Go back to sign in page");
 
                 curr_status="CREATE";
 
+                firstPage.getLayoutParams().width= (int) getResources().getDimension(com.intuit.sdp.R.dimen._10sdp);
+                firstPage.getLayoutParams().height= (int) getResources().getDimension(com.intuit.sdp.R.dimen._10sdp);
+                firstPage.requestLayout();
+                secondPage.getLayoutParams().width= (int) getResources().getDimension(com.intuit.sdp.R.dimen._15sdp);
+                secondPage.getLayoutParams().height= (int) getResources().getDimension(com.intuit.sdp.R.dimen._15sdp);
+                secondPage.requestLayout();
+
             }
             else{
-                enterRegisterUsername.setVisibility(View.GONE);
-                enterRegisterEmail.setHint("Username or Email");
-                loginButton.setText("LOG IN");
-                createNewAccountButton.setText("CREATE NEW ACCOUNT");
 
-                t1.setText("Sign in");
-                t2.setText("If you already have an account");
+                title_shower.setText("Sign in");
+                sub_title_shower.setText("If you already have an account");
+
+                enterUsername.setVisibility(View.GONE);
+                confirmPassHolder.setVisibility(View.GONE);
+                loginOrRegisterButton.setText("LOG IN");
+                switchSignInSignUpButton.setText("Create new account  ->");
 
                 curr_status="SIGN";
+
+                firstPage.getLayoutParams().width= (int) getResources().getDimension(com.intuit.sdp.R.dimen._15sdp);
+                firstPage.getLayoutParams().height= (int) getResources().getDimension(com.intuit.sdp.R.dimen._15sdp);
+                firstPage.requestLayout();
+                secondPage.getLayoutParams().width= (int) getResources().getDimension(com.intuit.sdp.R.dimen._10sdp);
+                secondPage.getLayoutParams().height= (int) getResources().getDimension(com.intuit.sdp.R.dimen._10sdp);
+                secondPage.requestLayout();
             }
         }
+    }
+
+
+    public void createNewAccount(String username,String email,String password,String confirmPassword){
+
+        //later I can add custom Toasts for all these conditions
+        username=username.trim();
+        if(username.length()<=2 || username.length()>=16){
+            Toast.makeText(this, "Length of username is too short or too long", Toast.LENGTH_SHORT).show();
+            enterUsername.setText("");
+            return;
+        }
+        username=username.replace(" ","_");
+        enterUsername.setText(username);
+        if(!Patterns.EMAIL_ADDRESS.matcher(email).matches() || email.length()<1){
+            Toast.makeText(this, "This email is badly formatted", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if(password.contains(" ")){
+            Toast.makeText(this, "Password should not contain blank spaces", Toast.LENGTH_SHORT).show();
+            enterPassword.setText("");
+            return;
+        }
+        if(password.length()<6 || password.length()>15){
+            Toast.makeText(this, "Length of password should be between 6 and 15", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if(!password.equals(confirmPassword)){
+            Toast.makeText(this, "Password and Confirm Password doesn't match", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        final String finalUsername = username;
+        auth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(task -> {
+            if(task.isSuccessful()){
+
+                String currentUserUid=auth.getUid();
+                // storing users data in database
+                database.getReference().child(ConstantsClass.USERS).child(currentUserUid).setValue(new MyUsers(finalUsername,email,password)).addOnCompleteListener(task1 -> {
+                    if(task1.isSuccessful()){
+                        Toast.makeText(LoginOrSignUpActivity.this, "Account created successfully", Toast.LENGTH_SHORT).show();
+                        // this is because after account creation user is automatically signed in
+                        auth.signOut();
+                    }
+                    else{
+
+                        // todo, later when I learn about it more
+                    }
+                });
+            }
+            else{
+                Toast.makeText(LoginOrSignUpActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    public void signInWithAccount(String email,String password,String username){
+        auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                Log.i("mdx", auth.getUid());
+                database.getReference().child(ConstantsClass.USERS).child(auth.getUid()).child("online").setValue(true);
+                Intent intent = new Intent(LoginOrSignUpActivity.this, FriendsListActivity.class);
+                startActivity(intent);
+                finish();
+            } else {
+                Toast.makeText(LoginOrSignUpActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

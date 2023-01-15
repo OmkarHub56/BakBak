@@ -18,7 +18,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_50sdp"
+            android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <TextView
@@ -28,24 +28,47 @@
                 android:fontFamily="@font/andika_new_basic_bold"
                 android:text="Your Chats"
                 android:textColor="@color/white"
-                android:textSize="@dimen/_23sdp"
+                android:textSize="@dimen/_21sdp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_marginBottom="@dimen/_12sdp"/>
 
-            <ImageButton
-                android:layout_width="@dimen/_33sdp"
-                android:layout_height="@dimen/_33sdp"
-                android:layout_gravity="end"
-                android:layout_marginEnd="@dimen/_15sdp"
-                android:background="@android:color/transparent"
-                android:onClick="openSettings"
-                android:scaleType="centerInside"
-                android:src="@drawable/user_icon"
-                app:layout_constraintBottom_toBottomOf="parent"
+            <ImageView
+                android:id="@+id/menu_btn"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:src="@drawable/menu_icon"
+                android:layout_marginEnd="@dimen/_10sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.70" />
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/open_profile_btn"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_gravity="end"
+                android:layout_marginEnd="@dimen/_5sdp"
+                android:src="@drawable/user_icon"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/menu_btn"
+                app:layout_constraintTop_toTopOf="parent"
+                android:background="@drawable/profile_bgs_thin"
+                android:padding="@dimen/_3sdp"/>
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/open_settings_btn"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_gravity="end"
+                android:layout_marginEnd="@dimen/_6sdp"
+                android:src="@drawable/settings_icon"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/open_profile_btn"
+                app:layout_constraintTop_toTopOf="parent"
+                android:padding="@dimen/_3sdp"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -54,21 +77,19 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/_35sdp"
             android:layout_marginStart="@dimen/_20sdp"
-            android:layout_marginTop="@dimen/_14sdp"
+            android:layout_marginTop="@dimen/_10sdp"
             android:layout_marginEnd="@dimen/_20sdp"
-            android:layout_marginBottom="@dimen/_20sdp"
+            android:layout_marginBottom="@dimen/_15sdp"
             android:background="@drawable/rounded_corner_lllight_gray"
             android:drawableStart="@drawable/search_icon"
             android:drawablePadding="4dp"
             android:ems="10"
-            android:fontFamily="@font/spartan_bold"
+            android:fontFamily="@font/andika_new_basic_bold"
             android:gravity="center_vertical"
             android:hint="Search for contacts"
             android:imeOptions="actionSearch"
             android:inputType="textPersonName"
             android:paddingStart="10dp"
-            android:paddingTop="5dp"
-            android:paddingBottom="7dp"
             android:textSize="@dimen/_12ssp" />
 
 
@@ -82,24 +103,10 @@
             app:tabIndicatorHeight="@dimen/_38sdp"
             app:tabTextColor="@color/gray"
             app:tabIndicatorGravity="center"
-            android:layout_marginEnd="@dimen/_4sdp"
-            android:layout_marginStart="@dimen/_4sdp"
+            android:layout_marginEnd="@dimen/_6sdp"
+            android:layout_marginStart="@dimen/_6sdp"
             app:tabTextAppearance="@style/tab_text">
 
-<!--            <com.google.android.material.tabs.TabItem-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="Chats" />-->
-
-<!--            <com.google.android.material.tabs.TabItem-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="Sent" />-->
-
-<!--            <com.google.android.material.tabs.TabItem-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="Accepted" />-->
         </com.google.android.material.tabs.TabLayout>
 
 <!--        <androidx.recyclerview.widget.RecyclerView-->
@@ -110,11 +117,34 @@
 
 <!--        </androidx.recyclerview.widget.RecyclerView>-->
 
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/view_pager"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="10dp" />
+            android:layout_height="match_parent">
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/view_pager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/close_to_black_gray"
+                android:paddingTop="@dimen/_15sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+<!--            <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--                android:id="@+id/add_new_user"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:background="@color/white"-->
+<!--                android:src="@drawable/plus_symbol"-->
+<!--                app:layout_constraintBottom_toBottomOf="@+id/view_pager"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                android:layout_marginEnd="@dimen/_5sdp"-->
+<!--                android:layout_marginBottom="@dimen/_5sdp"/>-->
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 <!--        <androidx.constraintlayout.widget.ConstraintLayout-->
 <!--            android:layout_width="match_parent"-->

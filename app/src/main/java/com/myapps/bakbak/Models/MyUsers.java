@@ -1,8 +1,7 @@
 package com.myapps.bakbak.Models;
 
 public class MyUsers {
-    String username,email,password;
-    String profilePic,userId;
+    String username,email,password,profile_pic,userId;
 
     public MyUsers(String username, String email, String password) {
         this.username = username;
@@ -10,24 +9,14 @@ public class MyUsers {
         this.password = password;
     }
 
+    public MyUsers(String username, String email, String password, String profile_pic, String userId) {
+        this(username,email,password);
+        this.profile_pic = profile_pic;
+        this.userId = userId;
+    }
+
     public MyUsers(){
 
-    }
-
-    public String getProfilePic() {
-        return profilePic;
-    }
-
-    public void setProfilePic(String profilePic) {
-        this.profilePic = profilePic;
-    }
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
     }
 
     public String getUsername() {
@@ -52,5 +41,21 @@ public class MyUsers {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getProfile_pic() {
+        return profile_pic;
+    }
+
+    public void setProfile_pic(String profile_pic) {
+        this.profile_pic = profile_pic;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 }
