@@ -71,6 +71,7 @@ public class ReceivedFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 invitesDataSnapshot=snapshot;
+                refreshButton.performClick();
             }
 
             @Override
@@ -92,7 +93,6 @@ public class ReceivedFragment extends Fragment implements View.OnClickListener {
         searchUserRView.setVisibility(View.VISIBLE);
 
         refreshButton.setOnClickListener(this);
-        refreshButton.performClick();
         return main_ll;
     }
 
@@ -112,7 +112,7 @@ public class ReceivedFragment extends Fragment implements View.OnClickListener {
             }
             for(DataSnapshot snapshot:invitesDataSnapshot.getChildren()){
                 String uid=snapshot.getKey();
-                database.getReference().child("Users").child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
+                database.getReference().child(ConstantsClass.USERS).child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         MyUsers currUser=snapshot.getValue(MyUsers.class);

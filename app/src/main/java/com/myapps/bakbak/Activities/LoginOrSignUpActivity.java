@@ -1,5 +1,6 @@
 package com.myapps.bakbak.Activities;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
@@ -202,6 +203,10 @@ public class LoginOrSignUpActivity extends AppCompatActivity implements View.OnC
             return;
         }
         final String finalUsername = username;
+        ProgressDialog myPg=new ProgressDialog(this);
+        myPg.setTitle("Creating account...");
+        myPg.setCancelable(false);
+        myPg.show();
         auth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(task -> {
             if(task.isSuccessful()){
 
@@ -209,6 +214,7 @@ public class LoginOrSignUpActivity extends AppCompatActivity implements View.OnC
                 // storing users data in database
                 database.getReference().child(ConstantsClass.USERS).child(currentUserUid).setValue(new MyUsers(finalUsername,email,password)).addOnCompleteListener(task1 -> {
                     if(task1.isSuccessful()){
+                        myPg.dismiss();
                         Toast.makeText(LoginOrSignUpActivity.this, "Account created successfully", Toast.LENGTH_SHORT).show();
                         // this is because after account creation user is automatically signed in
                         auth.signOut();
@@ -226,13 +232,19 @@ public class LoginOrSignUpActivity extends AppCompatActivity implements View.OnC
     }
 
     public void signInWithAccount(String email,String password,String username){
+        ProgressDialog myPg=new ProgressDialog(this);
+        myPg.setTitle("Logging in...");
+        myPg.setCancelable(false);
+        myPg.show();
         auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 Log.i("mdx", auth.getUid());
+                myPg.dismiss();
                 database.getReference().child(ConstantsClass.USERS).child(auth.getUid()).child("online").setValue(true);
                 Intent intent = new Intent(LoginOrSignUpActivity.this, FriendsListActivity.class);
                 startActivity(intent);
                 finish();
+
             } else {
                 Toast.makeText(LoginOrSignUpActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
             }

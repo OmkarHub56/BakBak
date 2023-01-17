@@ -123,7 +123,7 @@
                         android:fontFamily="@font/andika_new_basic"
                         android:textColor="@color/ddddark_gray"
                         android:textSize="@dimen/_12ssp"
-                        android:background="@drawable/empty_rounded_black_border"
+                        android:background="@drawable/white_rounded_black_border"
                         android:paddingBottom="@dimen/_3sdp"
                         android:hint="Enter new username"
                         android:textColorHint="@color/ddddark_gray"

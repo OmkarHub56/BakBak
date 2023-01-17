@@ -16,7 +16,7 @@
 
     <style name="MyStyle">
 
-        <item name="android:background">@drawable/empty_rounded_black_border</item>
+        <item name="android:background">@drawable/white_rounded_black_border</item>
         <item name="android:padding">@dimen/_12sdp</item>
     </style>
 

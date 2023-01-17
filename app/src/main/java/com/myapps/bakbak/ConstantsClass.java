@@ -11,6 +11,7 @@ public class ConstantsClass {
     public static String REQUESTS="requests";
     public static String FRIENDS="friends";
     public static String PROFILE_PIC="profile_pic";
+    public static String USER_ACCOUNT_DELETED="user_account_deleted";
     public static String CHATS="Chats";
 
     public static String LAST_MESSAGE_DETAILS="last_message_details";

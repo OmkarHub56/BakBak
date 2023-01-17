@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.method.PasswordTransformationMethod;
@@ -33,7 +34,7 @@ public class ChangePasswordActivity extends AppCompatActivity implements View.On
     FirebaseDatabase database;
     DatabaseReference password;
     ValueEventListener passwordList;
-    String currentPassword="74hf645hs";
+    String currentPassword="74hf645hs8vsrdikxig";
 
     ImageButton backBtn;
 
@@ -152,11 +153,16 @@ public class ChangePasswordActivity extends AppCompatActivity implements View.On
             changePasswordBtn.setClickable(false);
 
 
+
             DialogInterface.OnClickListener dialogClickListener = (dialog, which) -> {
                 switch(which){
                     case DialogInterface.BUTTON_POSITIVE:
                         //Yes button clicked
-                        changePassword(password);
+                        ProgressDialog myPg=new ProgressDialog(this);
+                        myPg.setTitle("Changing password...");
+                        myPg.setCancelable(false);
+                        myPg.show();
+                        changePassword(password,myPg);
                         break;
 
                     case DialogInterface.BUTTON_NEGATIVE:
@@ -179,12 +185,13 @@ public class ChangePasswordActivity extends AppCompatActivity implements View.On
         }
     }
 
-    public void changePassword(String password){
+    public void changePassword(String password,ProgressDialog myPg){
         auth.getCurrentUser().updatePassword(password).addOnCompleteListener(task ->
                 database.getReference().child(ConstantsClass.USERS).child(current_uid).child(ConstantsClass.PASSWORD).setValue(password).addOnCompleteListener(task1 -> {
             Toast.makeText(ChangePasswordActivity.this, "Password changed successfully", Toast.LENGTH_SHORT).show();
             changePasswordBtn.setEnabled(true);
             changePasswordBtn.setClickable(true);
+            myPg.dismiss();
         }));
     }
 

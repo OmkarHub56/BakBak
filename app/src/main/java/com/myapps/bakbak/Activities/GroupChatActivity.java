@@ -125,6 +125,8 @@ public class GroupChatActivity extends AppCompatActivity implements View.OnClick
 //
 //                    status=snapshot.getValue(Boolean.class);
 //                }
+
+                // going through all group members
                 for(DataSnapshot dataSnapshot:snapshot.getChildren()){
                     String userid=dataSnapshot.getKey();
                     if(userid.equals(sender_id)){
@@ -134,16 +136,18 @@ public class GroupChatActivity extends AppCompatActivity implements View.OnClick
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             if(snapshot.getValue(Boolean.class)){
+
                                 if(!onlineOfflineSaver.containsKey(userid) || !onlineOfflineSaver.get(userid)){
                                     online_count++;
-                                    onlineOfflineSaver.put(dataSnapshot.getKey(),true);
                                 }
+                                onlineOfflineSaver.put(userid,true);
+
                             }
                             else{
                                 if(onlineOfflineSaver.containsKey(userid) && onlineOfflineSaver.get(userid)){
                                     online_count--;
-                                    onlineOfflineSaver.put(dataSnapshot.getKey(),false);
                                 }
+                                onlineOfflineSaver.put(userid,false);
                             }
                             updateOnlineCountShower();
                         }
